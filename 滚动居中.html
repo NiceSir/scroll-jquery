@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            height: 2000px;
+            /* width: 100%; */
+        }
+
+        #btn1 {
+            display: block;
+            position: relative;
+            /* left: 50%; */
+            /* top: 50%; */
+        }
+        #form {
+            /* display: none; */
+            position: relative;
+            width: 250px;
+            height: 250px;
+            background-color: #fff;
+            border: 1px solid black;
+            margin: 0;
+            text-align: center;
+            line-height: 50px;
+        }
+        input{
+            height: 25px;
+            width: 180px;
+            vertical-align:bottom;
+        }
+        input#uname{
+            margin-top: 80px;
+        }
+        p{
+            position: absolute;
+            height: 20px;
+            width: 20px;
+            right: 10px;
+            top: 10px;
+            font-size: 5px;
+            border: 0.5px solid black;
+            line-height: 20px;
+            cursor:pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <button id="btn1">点击</button>
+    <div id="form">
+        <p>X</p>
+        <input type="text" name="username" placeholder="请输入账号" id="uname">
+        <input type="password" name="password" placeholder="请输入密码" id="pwd">
+    </div>
+    <script>
+        let btn = document.getElementById('btn1')//点击按钮
+        let ht = document.documentElement//html本体
+        let form=document.getElementById('form')//div
+        let xExit=form.getElementsByTagName('p')
+        //获取初始值
+        let fWidth=form.offsetWidth
+        let fHeight=form.offsetHeight
+        window.onload = function () {
+            //设置初始值
+            btn.style.top = (ht.clientHeight - btn.offsetHeight) / 2 + 'px'
+            btn.style.left = (ht.clientWidth - btn.offsetWidth) / 2 + 'px'
+            form.style.display='none'
+
+            // btn点击事件
+            btn.onclick=function(){
+                form.style.display='block'
+                form.style.top = (ht.clientHeight - fHeight) / 2 + 'px'
+                form.style.left = (ht.clientWidth - fWidth) / 2 + 'px'
+            }
+
+            //xExit点击事件
+            xExit[0].onclick=function(){
+                form.style.display='none'
+            }
+
+            //滚动事件
+            window.onscroll = function () {
+
+                // btn的定位
+                btn.style.top = (ht.clientHeight - btn.offsetHeight) / 2 + ht.scrollTop + 'px'
+
+                // form 的定位
+                form.style.top = (ht.clientHeight - form.offsetHeight) / 2 + + ht.scrollTop + 'px'
+            }
+        }
+        // console.log(body.clientHeight)
+
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            height: 2000px;
+        }
+
+        #btn {
+            width: 60px;
+            height: 30px;
+            display: block;
+            position: relative;
+            /* top: 50%;
+             left: 50%; */
+        }
+
+        #form {
+            display: none;
+            position: relative;
+            width: 250px;
+            height: 250px;
+            border: 1.5px solid black;
+            border-radius: 10px;
+            background-color: #fff;
+            text-align: center;
+            /* line-height: 100px; */
+        }
+
+        #form p {
+            font-size: 15px;
+            position: absolute;
+            right: 10px;
+            /* top: 10px; */
+            line-height: 12px;
+            /* border:1px solid blue; */
+            cursor: pointer;
+        }
+
+        #form input {
+            margin-top: 20px;
+        }
+
+        #form input#uname {
+            margin-top: 80px;
+        }
+    </style>
+</head>
+
+<body>
+    <button id="btn">Click</button>
+    <div id="form">
+        <p>X</p>
+        <input type="text" name="username" id="uname" placeholder="username">
+        <input type="text" name="password" id="pwd" placeholder="password">
+    </div>
+    <script src="../jquery.min.js"></script>
+    <script>
+        $(function () {
+            let btn = $('#btn')       //btn
+            let form = $('#form')     //form
+            let p = form.find('p')
+            //初始状态
+            let bTop = $(window).scrollTop() + ($(window).height() - btn.outerHeight()) / 2 + 'px'
+            let bLeft = $(window).scrollLeft() + ($(window).width() - btn.outerWidth()) / 2 + 'px'
+            let fTop = $(window).scrollTop() + ($(window).height() - form.outerHeight()) / 2 + 'px'
+            let fLeft = $(window).scrollLeft() + ($(window).width() - form.outerWidth()) / 2 + 'px'
+            btn.css({
+                'top': bTop,
+                'left': bLeft
+            })
+            form.css({
+                'top': fTop,
+                'left': fLeft
+            })
+
+
+            //点击事件
+            btn.click(function () {
+                form.css('display', 'block')
+            })
+            p.click(function () {
+                form.css('display', 'none')
+            })
+
+            $(window).scroll(function () {
+                //初始状态
+                let bTop = $(window).scrollTop() + ($(window).height() - btn.outerHeight()) / 2 + 'px'
+                let bLeft = $(window).scrollLeft() + ($(window).width() - btn.outerWidth()) / 2 + 'px'
+
+                let fTop = $(window).scrollTop() + ($(window).height() - form.outerHeight()) / 2 + 'px'
+                let fLeft = $(window).scrollLeft() + ($(window).width() - form.outerWidth()) / 2 + 'px'
+
+
+                btn.css({
+                    'top': bTop,
+                    'left': bLeft
+                })
+
+                form.css({
+                    'top': fTop,
+                    'left': fLeft
+                })
+            })
+        })
+
+    </script>
+</body>
+
+</html>
